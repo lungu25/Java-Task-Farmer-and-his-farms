@@ -1,0 +1,2 @@
+Method buy is refa tored. Now you cannot change farm price. Added constructor that access the price and set it. Everywhere is added setter and getter.Also added packages. Constructor wont work without
+ packages.Main should be outside the package.

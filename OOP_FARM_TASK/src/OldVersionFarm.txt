@@ -1,0 +1,152 @@
+/* old version with buy function, no constructors, you can change price from everywhere, missing some stter and getter
+
+
+class Animal extends Items{
+    public Integer age;
+}
+
+class AnimalFarm extends Farm{
+    public void breed(Animal animal){
+        itemList.add(animal);
+    }
+}
+
+
+import java.util.ArrayList;
+
+abstract class Farm{
+    public String name = null;
+    public int price = 0;
+    public ArrayList<Items> itemList = new ArrayList<>(); // o lista de obiecte, iar obiectele pot fi animale sau plante
+}
+
+
+
+import java.sql.SQLOutput;
+import java.util.ArrayList;
+import java.util.Scanner;
+import sun.management.Agent;
+
+public class Farm_Task {
+    public static void main(String[] args) {
+         //Farmer\\tipul obiectului   farmer \\ Denumirea variabilei  = new Farmer();
+        Farmer F1 = new Farmer();
+        //Using getter and setters
+        System.out.println("First Fermer");
+        F1.setAge(21);
+        F1.setName("Mihail");
+        F1.setFinance(999999);
+        AnimalFarm UTM = new AnimalFarm();
+        System.out.println(F1.toString());
+        UTM.name = "UTM";
+        System.out.println("Buying farm: " + UTM.name);
+        UTM.price = 10000;
+        System.out.println("With price: " + UTM.price);
+        F1.buy(UTM);
+        System.out.println(F1.toString());
+        AnimalFarm ASEM = new AnimalFarm();
+        ASEM.name = "ASEM";
+        System.out.println("Buying farm: " + ASEM.name);
+        ASEM.price = 9999999;
+        System.out.println("With price: " + ASEM.price);
+        F1.buy(ASEM);
+        Animal one = new Animal();
+        Animal two = new Animal();
+        // Without getter, with public atributesS
+        System.out.println("Creating animal one with: ");
+        one.breed =("Horse");
+        System.out.println("Breed: " + one.breed);
+        one.type = ("Arabic");
+        System.out.println("Type: " + one.type);
+        one.age = 4;
+        System.out.println("Age: " + one.age);
+        System.out.println("Creating animal two with: ");
+        two.breed = ("Dog");
+        System.out.println("Breed: " + two.breed);
+        two.type = ("Buldog");
+        System.out.println("Type: " + two.type);
+        two.age = 9;
+        System.out.println("Age: " + two.age);
+        UTM.breed(one); // privatizam animalele care stau in aer la shop
+        System.out.println("Farm " + UTM.name + " bought animal: " + one.breed);
+        UTM.breed(two);
+        System.out.println("Farm " + UTM.name + " bought animal: " + two.breed);
+        Plant one1 = new Plant();
+        one1.PlantCharacteristic = "fruit";
+        one1.breed = ("tree");
+        one1.type = ("peech");
+        PlantFarm plantfarm = new PlantFarm();
+        plantfarm.plant(one1);
+        F1.buy(plantfarm);
+        System.out.println(F1.toString());
+
+
+
+    }
+}
+
+
+
+
+import java.util.ArrayList;
+
+class Farmer{
+    private String name;
+    private int age;
+    private int finance;
+
+    private ArrayList<Farm> FarmList = new ArrayList<>();
+
+    public String getName(){
+        return name;
+    }
+    public Integer getAge(){
+        return age;
+    }
+    public Integer getFinance(){
+        return finance;
+    }
+    public void setName(String name){
+        this.name = name;
+    }
+    public void setAge(Integer age){
+        this.age = age;
+    }
+    public void setFinance(Integer finance){
+        this.finance = finance;
+    }
+    public boolean buy(Farm farm){
+        if (farm.price < finance){
+            FarmList.add(farm);
+            this.finance-=farm.price;
+            System.out.println("Farm was assigned");
+            return true; //Return true if transaction was completed
+        }
+
+        else { System.out.println("Insuficient money");
+            return false;
+        }
+    }
+
+    public String toString(){
+        return "Name: " + this.name + "\nAge:  " + this.age + "\nFinance: " + this.finance;
+    }
+
+}
+
+
+abstract class Items{
+    public String breed = null;
+    public String type = null;
+}
+
+
+class Plant extends Items{
+    public String PlantCharacteristic;
+
+}
+
+
+
+
+
